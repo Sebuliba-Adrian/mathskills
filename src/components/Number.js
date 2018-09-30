@@ -1,12 +1,28 @@
-import React from "react";
+import React from 'react';
+import _ from 'lodash';
 
-export default () => {
+export default props => {
+  const arrayOfNumbers = _.range(1, 10);
+  const numberClassName = number => {
+    if (props.usedNumbers.indexOf(number) >= 0) {
+      return "used";
+    }
+    if (props.selectedNumbers.indexOf(number) >= 0) {
+      return "selected";
+    }
+  };
   return (
     <div className="card text-center">
       <div>
-        <span>1</span>
-        <span className="selected">2</span>
-        <span className="used">3</span>
+        {arrayOfNumbers.map((number, i) => (
+          <span
+            key={i}
+            className={numberClassName(number)}
+            onClick={() => props.selectNumber(number)}
+          >
+            {number}
+          </span>
+        ))}
       </div>
     </div>
   );

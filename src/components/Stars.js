@@ -1,15 +1,12 @@
-import React from "react";
+import React from 'react';
+import _ from 'lodash';
 
-export default () => {
-  const numberOfStars = 1 + Math.floor(Math.random() * 9);
-  let stars = [];
-
-  for (let i = 0; i < numberOfStars; i++) {
-    stars.push(<i key={i} className="fa fa-star" />);
-  }
+export default props => {
   return (
     <div className="col-5">
-      <i className="fa fa-star">{stars}</i>
+      {_.range(props.numberOfStars).map(i => (
+        <i key={i} className="fa fa-star" />
+      ))}
     </div>
   );
 };
